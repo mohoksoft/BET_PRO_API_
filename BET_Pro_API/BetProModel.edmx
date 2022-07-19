@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BET_PROModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BestOdds">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="providerId" Type="int" />
+          <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="link" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="abbreviation" Type="varchar" MaxLength="50" />
+          <Property Name="title" Type="varchar" MaxLength="50" />
+          <Property Name="default_match_type" Type="varchar" MaxLength="50" />
+          <Property Name="color" Type="varchar" MaxLength="50" />
+          <Property Name="updated_at" Type="varchar" MaxLength="50" />
+          <Property Name="created_at" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="250" />
+          <Property Name="thumbnail" Type="varchar" MaxLength="250" />
+          <Property Name="fallback" Type="varchar" MaxLength="50" />
+          <Property Name="entity_type" Type="varchar" MaxLength="50" />
+          <Property Name="entity_id" Type="int" />
+          <Property Name="updated_at" Type="varchar" MaxLength="50" />
+          <Property Name="created_at" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Kladionice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" />
+          <Property Name="Link" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="startDate" Type="varchar" MaxLength="50" />
+          <Property Name="endDate" Type="varchar" MaxLength="50" />
+          <Property Name="gameId" Type="bigint" />
+          <Property Name="lifecycle" Type="varchar" MaxLength="50" />
+          <Property Name="turnamentId" Type="varchar" MaxLength="50" />
+          <Property Name="title" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Odds">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="matchId" Type="bigint" />
+          <Property Name="teamId" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="providerId" Type="int" />
+          <Property Name="link" Type="varchar" MaxLength="250" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kvota1" Type="varchar" MaxLength="50" />
+          <Property Name="kvota2" Type="varchar" MaxLength="50" />
+          <Property Name="procenat" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Participant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="matchId" Type="bigint" />
+          <Property Name="teamId" Type="bigint" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="image" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="SifarnikIgara">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Timovi">
+          <Key>
+            <PropertyRef Name="Sifra" />
+          </Key>
+          <Property Name="Sifra" Type="bigint" Nullable="false" />
+          <Property Name="RimbleNaziv" Type="nvarchar" MaxLength="50" />
+          <Property Name="OddsPortalNaziv" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="BET_PROModelStoreContainer">
+          <EntitySet Name="BestOdds" EntityType="Self.BestOdds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kladionice" EntityType="Self.Kladionice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Match" EntityType="Self.Match" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Odds" EntityType="Self.Odds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Participant" EntityType="Self.Participant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SifarnikIgara" EntityType="Self.SifarnikIgara" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Timovi" EntityType="Self.Timovi" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BET_PROModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BET_PROEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BestOdds" EntityType="BET_PROModel.BestOdd" />
+          <EntitySet Name="Games" EntityType="BET_PROModel.Game" />
+          <EntitySet Name="Images" EntityType="BET_PROModel.Image" />
+          <EntitySet Name="Matches" EntityType="BET_PROModel.Match" />
+          <EntitySet Name="Odds" EntityType="BET_PROModel.Odd" />
+          <EntitySet Name="Participants" EntityType="BET_PROModel.Participant" />
+          <EntitySet Name="SifarnikIgaras" EntityType="BET_PROModel.SifarnikIgara" />
+          <EntitySet Name="Timovis" EntityType="BET_PROModel.Timovi" />
+          <EntitySet Name="Kladionices" EntityType="BET_PROModel.Kladionice" />
+        </EntityContainer>
+        <EntityType Name="BestOdd">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="providerId" Type="Int32" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="link" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="abbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="default_match_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updated_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="thumbnail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="fallback" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="entity_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="entity_id" Type="Int32" />
+          <Property Name="updated_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="startDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="endDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gameId" Type="Int64" />
+          <Property Name="lifecycle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="turnamentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Odd">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="matchId" Type="Int64" />
+          <Property Name="teamId" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="providerId" Type="Int32" />
+          <Property Name="link" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kvota1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kvota2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="procenat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Participant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="matchId" Type="Int64" />
+          <Property Name="teamId" Type="Int64" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SifarnikIgara">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Timovi">
+          <Key>
+            <PropertyRef Name="Sifra" />
+          </Key>
+          <Property Name="Sifra" Type="Int64" Nullable="false" />
+          <Property Name="RimbleNaziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OddsPortalNaziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Kladionice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BET_PROModelStoreContainer" CdmEntityContainer="BET_PROEntities1">
+          <EntitySetMapping Name="BestOdds">
+            <EntityTypeMapping TypeName="BET_PROModel.BestOdd">
+              <MappingFragment StoreEntitySet="BestOdds">
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="providerId" ColumnName="providerId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="BET_PROModel.Game">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="default_match_type" ColumnName="default_match_type" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="abbreviation" ColumnName="abbreviation" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="BET_PROModel.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="entity_id" ColumnName="entity_id" />
+                <ScalarProperty Name="entity_type" ColumnName="entity_type" />
+                <ScalarProperty Name="fallback" ColumnName="fallback" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Matches">
+            <EntityTypeMapping TypeName="BET_PROModel.Match">
+              <MappingFragment StoreEntitySet="Match">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="turnamentId" ColumnName="turnamentId" />
+                <ScalarProperty Name="lifecycle" ColumnName="lifecycle" />
+                <ScalarProperty Name="gameId" ColumnName="gameId" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Odds">
+            <EntityTypeMapping TypeName="BET_PROModel.Odd">
+              <MappingFragment StoreEntitySet="Odds">
+                <ScalarProperty Name="procenat" ColumnName="procenat" />
+                <ScalarProperty Name="kvota2" ColumnName="kvota2" />
+                <ScalarProperty Name="kvota1" ColumnName="kvota1" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="providerId" ColumnName="providerId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="teamId" ColumnName="teamId" />
+                <ScalarProperty Name="matchId" ColumnName="matchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Participants">
+            <EntityTypeMapping TypeName="BET_PROModel.Participant">
+              <MappingFragment StoreEntitySet="Participant">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="teamId" ColumnName="teamId" />
+                <ScalarProperty Name="matchId" ColumnName="matchId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SifarnikIgaras">
+            <EntityTypeMapping TypeName="BET_PROModel.SifarnikIgara">
+              <MappingFragment StoreEntitySet="SifarnikIgara">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Timovis">
+            <EntityTypeMapping TypeName="BET_PROModel.Timovi">
+              <MappingFragment StoreEntitySet="Timovi">
+                <ScalarProperty Name="OddsPortalNaziv" ColumnName="OddsPortalNaziv" />
+                <ScalarProperty Name="RimbleNaziv" ColumnName="RimbleNaziv" />
+                <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kladionices">
+            <EntityTypeMapping TypeName="BET_PROModel.Kladionice">
+              <MappingFragment StoreEntitySet="Kladionice">
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
